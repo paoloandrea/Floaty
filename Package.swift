@@ -23,5 +23,5 @@ let package = Package(
             name: "Floaty",
             path: "Sources"),
     ],
-    swiftLanguageVersions: [.v5])
+    swiftLanguageVersions: [.v5]
 )
