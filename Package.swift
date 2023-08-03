@@ -22,6 +22,5 @@ let package = Package(
         .target(
             name: "Floaty",
             path: "Sources"),
-    ],
-    swiftLanguageVersions: [.v5]
+    ]
 )
