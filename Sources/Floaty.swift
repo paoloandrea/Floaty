@@ -142,6 +142,7 @@ open class Floaty: UIView {
   @objc @IBInspectable
   open var buttonImage: UIImage? = nil {
     didSet {
+      guard let buttonImage = buttonImage else { return }
       self.buttonImageView = UIImageView(image: buttonImage)
       self.buttonImageView.sizeToImage()
       self.setNeedsDisplay()
