@@ -305,7 +305,11 @@ open class Floaty: UIView {
      */
     //    private var overlayLayer: CAShapeLayer = CAShapeLayer()
     
-    fileprivate var overlayView : UIControl = UIControl()
+    fileprivate var overlayView : UIControl = {
+        let overlayView = UIControl()
+        overlayView.tag = 1
+        return overlayView
+    }()
     
     /**
      Keep track of whether overlay open animation completes, to avoid animation conflicts.
@@ -477,15 +481,21 @@ open class Floaty: UIView {
     /**
      Items close.
      */
-    @objc open func close() {
+    @objc open func close(_ sender:Any) {
+        var tapOnBackground = false
+        if (sender as AnyObject).isKind(of: UIControl.self)  {
+            tapOnBackground = true
+        }
+        print(sender)
         if let shouldClose = fabDelegate?.floatyShouldClose?(self), shouldClose == false {
             return
         }
         
-        fabDelegate?.floatyWillClose?(self)
+        fabDelegate?.floatyWillClose?(self, tapOnBackground: tapOnBackground)
         let animationGroup = DispatchGroup()
         
         if(items.count > 0){
+           
             self.overlayView.removeTarget(self, action: #selector(close), for: UIControl.Event.touchUpInside)
             animationGroup.enter()
             UIView.animate(withDuration: 0.3, delay: 0,
@@ -540,7 +550,7 @@ open class Floaty: UIView {
             if closed == true {
                 open()
             } else {
-                close()
+                close(self)
             }
         } else {
             fabDelegate?.emptyFloatySelected?(self)

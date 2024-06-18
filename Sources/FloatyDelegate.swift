@@ -27,7 +27,7 @@ import Foundation
 
   @objc optional func floatyShouldClose(_ floaty: Floaty) -> Bool
   
-  @objc optional func floatyWillClose(_ floaty: Floaty)
+    @objc optional func floatyWillClose(_ floaty: Floaty, tapOnBackground:Bool)
   
   @objc optional func floatyDidClose(_ floaty: Floaty)
 

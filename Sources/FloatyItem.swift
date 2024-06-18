@@ -310,7 +310,7 @@ open class FloatyItem: UIView {
       if touch?.tapCount == 1 {
         if touch?.location(in: self) == nil { return }
         if actionButton != nil && actionButton!.autoCloseOnTap {
-          actionButton!.close()
+            actionButton!.close(actionButton as Any)
         }
         handler?(self)
       }
