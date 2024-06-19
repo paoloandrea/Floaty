@@ -491,7 +491,7 @@ open class Floaty: UIView {
             return
         }
         
-        fabDelegate?.floatyWillClose?(self, tapOnBackground: tapOnBackground)
+        fabDelegate?.floatyWillClose?(self, tapOnBackground: tapOnBackground, item: clickedItem)
         let animationGroup = DispatchGroup()
         
         if(items.count > 0){
@@ -732,6 +732,7 @@ open class Floaty: UIView {
         items[index].removeFromSuperview()
         items.remove(at: index)
     }
+    var clickedItem: FloatyItem?
     
     @objc open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if closed == false {
@@ -742,6 +743,7 @@ open class Floaty: UIView {
                 let tapArea = determineTapArea(item: item)
                 if tapArea.contains(itemPoint) == true {
                     itemPoint = item.bounds.origin
+                    clickedItem = item
                     return item.hitTest(itemPoint, with: event)
                 }
             }

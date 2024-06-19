@@ -99,7 +99,6 @@ Floaty.global.rtlMode = true
 <img src="https://github.com/divgunsingh/Floaty/raw/master/Images/rtl_enabled.png" width='187' alt="Rtl Enabled"> <img src="https://github.com/divgunsingh/Floaty/raw/master/Images/rtl_disabled.png" width='187' alt="Rtl Disabled">
 
 
-
 ### Sticky
 You can use the `sticky` property.
 ```swift
@@ -133,6 +132,20 @@ With the default location of the frame, the button is now tappable until the rig
 <td><img src="https://github.com/kciter/Floaty/raw/master/Images/none_ani.gif" width='187' alt="None animation gif"></td>
 </tr>
 </table>
+
+### Delegate and tapped item
+Detection via the delegate whether the click to activate the floaty is performed by a button or in the background (function required to close the floaty).
+Since version **4.2.2** there are two parameters in the response of the **floatyWillClose** delegate
+
+The delegate is therefore now:
+
+```swift 
+func floatyWillClose(_ floaty: Floaty, tapOnBackground:Bool, item:Any)
+```
+
+The parameters that are sent by the delegate are
+- **tapOnBackground**, a Boolean value which if true indicates that a Floaty menu (floatyItem) was not clicked on but on the background
+- **item**, object on which the tap is performed
 
 ## ToDo
 * [ ] Labels to come at the right hand side of the FAB Item menu.
